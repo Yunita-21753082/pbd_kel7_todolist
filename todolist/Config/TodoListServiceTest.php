@@ -36,29 +36,19 @@ function testAddTodoList(): void
 
 function testRemoveTodoList(): void
 {
-    $todoListRepository = new TodoListRepositoryImpl();
+    $connection = \config\Database::getConnection();
+    $todoListRepository = new TodoListRepositoryImpl($connection);
 
     $todoListService = new TodoListServiceImpl($todoListRepository);
-    $todoListService->addTodoList("Belajar PHP");
-    $todoListService->addTodoList("Belajar PHP OOP");
-    $todoListService->addTodoList("Belajar PHP Database"); 
 
-    $todoListService->showTodoList();
-
-    $todoListService->removeTodoList(1);
-    $todoListService->showTodoList();
-
-    $todoListService->removeTodoList(4);
-    $todoListService->showTodoList();
-
-    $todoListService->removeTodoList(2);
-    $todoListService->showTodoList();
-
-    $todoListService->removeTodoList(1);
-    $todoListService->showTodoList();
+    echo $todoListService->removeTodolist(5) . PHP_EOL;
+    echo $todoListService->removeTodolist(4) . PHP_EOL;
+    echo $todoListService->removeTodolist(3) . PHP_EOL;
+    echo $todoListService->removeTodolist(2) . PHP_EOL;
+    echo $todoListService->removeTodolist(1) . PHP_EOL;
 }
 
-testAddTodoList();
+testRemoveTodoList();
 
 
 
